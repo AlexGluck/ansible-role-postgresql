@@ -22,34 +22,10 @@ env:
     postgresql_bin_dir: /usr/lib/postgresql/9.3/bin
     postgresql_data_dir: /var/lib/postgresql/9.3/main
     postgresql_daemon: postgresql
-  - distro: debian8
-    postgresql_bin_dir: /usr/lib/postgresql/9.4/bin
-    postgresql_data_dir: /var/lib/postgresql/9.4/main
-    postgresql_daemon: postgresql
   - distro: debian9
     postgresql_bin_dir: /usr/lib/postgresql/9.6/bin
     postgresql_data_dir: /var/lib/postgresql/9.6/main
     postgresql_daemon: postgresql
-  - distro: debian8
-    postgresql_version: 8.4
-  - distro: debian8
-    postgresql_version: 9.0
-  - distro: debian8
-    postgresql_version: 9.1
-  - distro: debian8
-    postgresql_version: 9.2
-  - distro: debian8
-    postgresql_version: 9.3
-  - distro: debian8
-    postgresql_version: 9.4
-  - distro: debian8
-    postgresql_version: 9.5
-  - distro: debian8
-    postgresql_version: 9.6
-  - distro: debian8
-    postgresql_version: 10
-  - distro: debian8
-    postgresql_version: 11
   - distro: debian9
     postgresql_version: 9.2
   - distro: debian9
