@@ -29,7 +29,7 @@ You can set a repo to use for PostgreSQL installation from postgresql.org.
 
     __ansible_ssh_pipelining: true
 
-Workaround for issue https://github.com/geerlingguy/ansible-role-postgresql/issues/29
+Workaround for issue <https://github.com/geerlingguy/ansible-role-postgresql/issues/29>
 
     postgresql_restarted_state: "restarted"
 
@@ -63,14 +63,14 @@ Global configuration options that will be set in `postgresql.conf`. Note that fo
 
 Configure [host based authentication](https://www.postgresql.org/docs/current/static/auth-pg-hba-conf.html) entries to be set in the `pg_hba.conf`. Options for entries include:
 
-  - `type` (required)
-  - `database` (required)
-  - `user` (required)
-  - `address` (one of this or the following two are required)
-  - `ip_address`
-  - `ip_mask`
-  - `auth_method` (required)
-  - `auth_options` (optional)
+- `type` (required)
+- `database` (required)
+- `user` (required)
+- `address` (one of this or the following two are required)
+- `ip_address`
+- `ip_mask`
+- `auth_method` (required)
+- `auth_options` (optional)
 
 If overriding, make sure you copy all of the existing entries from `defaults/main.yml` if you need to preserve existing entries.
 
@@ -109,8 +109,7 @@ A list of databases to ensure exist on the server. Only the `name` is required; 
         port: # defaults to not set
         state: # defaults to 'present'
 
-A list of users to ensure exist on the server. Only the `name` is required; all other properties are optional.
-
+A list of users to ensure exist on the server. Only the `name` is required; all other properties are optional. When variable `postgresql_create_users_first` is defined, role will create users before create databases.
 
     postgresql_extensions:
     - name: postgis # required
@@ -122,7 +121,6 @@ A list of users to ensure exist on the server. Only the `name` is required; all 
       state: # defaults to 'present
 
 A list of PostgreSQL extensions to be enabled on a given database under the server. Both `name` and `db` are required. The other properties are optional.
-
 
     postgresql_version: [OS-specific]
     postgresql_data_dir: [OS-specific]
@@ -152,7 +150,6 @@ None.
             db: example_db
       roles:
         - role: geerlingguy.postgresql
-
 
 ## Example Playbook for install from postgresql.org
 

@@ -27,7 +27,7 @@
     name: "{{ postgresql_daemon }}"
     state: started
     enabled: yes
-  when: ( ansible_distribution.lower() + ansible_distribution_version.split('.')[0] != 'debian7' ) or ( ansible_distribution.lower() == 'ubuntu' and (((ansible_distribution_version.split('.')[0] + ansible_distribution_version.split('.')[1])|float)*100)|int > 1504 )
+  when: ( ansible_distribution.lower() ~ ansible_distribution_version.split('.')[0] != 'debian7' ) or ( ansible_distribution.lower() == 'ubuntu' and (((ansible_distribution_version.split('.')[0] ~ ansible_distribution_version.split('.')[1])|float)*100)|int > 1504 )
 
 - name: Ensure PostgreSQL is started and enabled on boot ( for debian 7 and ubuntu lower 15.10 version ).
   service:
@@ -36,9 +36,14 @@
     enabled: yes
     sleep: 5
     args: "{{ postgresql_version }}"
-  when: ( ansible_distribution.lower() + ansible_distribution_version.split('.')[0] == 'debian7' ) or ( ansible_distribution.lower() == 'ubuntu' and (((ansible_distribution_version.split('.')[0] + ansible_distribution_version.split('.')[1])|float)*100)|int < 151000 ) and install_official_repo is defined
+  when: ( ansible_distribution.lower() ~ ansible_distribution_version.split('.')[0] == 'debian7' ) or ( ansible_distribution.lower() == 'ubuntu' and (((ansible_distribution_version.split('.')[0] ~ ansible_distribution_version.split('.')[1])|float)*100)|int < 151000 ) and install_official_repo is defined
 
-# Configure PostgreSQL.
+- name: Tasks for manage postgresql users.
+  include_tasks: users.yml
+  when: postgresql_create_users_first is defined
+  tags:
+    - config
+
 - name: Tasks for manage databases.
   include_tasks: databases.yml
   tags:
@@ -46,6 +51,7 @@
 
 - name: Tasks for manage postgresql users.
   include_tasks: users.yml
+  when: postgresql_create_users_first is not defined
   tags:
     - config
 
